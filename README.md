@@ -6,7 +6,6 @@ A simple command-line inventory management system implemented in Python, using M
 
 - Python 3.x
 - MySQL server
-- Required Python packages (see `requirements.txt`)
 
 ## :wrench: Setup
 
