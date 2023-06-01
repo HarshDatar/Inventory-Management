@@ -2,13 +2,15 @@ import mysql.connector as mariadb
 import matplotlib.pyplot as plt
 
 # Connect to MySQL database
-db = mariadb.connect(
-    host="localhost",
-    user=input("please enter the user name of your account"),
-     password=input("please enter the password"),
-     database="invproj"
-)
-
+try:
+    db = mariadb.connect(
+        host="localhost",
+        user=input("please enter the user name of your account: "),
+        password=input("please enter the password: "),
+        database="invproj"
+    )
+except:
+    print("Please Enter Correct information or Check if a database named Invproj is present or not. Error Code 1" )
 # Create a cursor object to execute SQL queries
 cursor = db.cursor()
 
@@ -37,17 +39,20 @@ def display_menu():
 
 # Function to add a product
 def add_product():
-    name = input("Enter the product name: ")
-    quantity = int(input("Enter the quantity: "))
-    price = float(input("Enter the price: "))
+    try:
+        name = input("Enter the product name: ")
+        quantity = int(input("Enter the quantity: "))
+        price = float(input("Enter the price: "))
 
-    add_product_query = """
-    INSERT INTO inventory (product_name, quantity, price)
-    VALUES (%s, %s, %s)
-    """
-    cursor.execute(add_product_query, (name, quantity, price))
-    db.commit()
-    print("Product added successfully!")
+        add_product_query = """
+        INSERT INTO inventory (product_name, quantity, price)
+        VALUES (%s, %s, %s)
+        """
+        cursor.execute(add_product_query, (name, quantity, price))
+        db.commit()
+        print("Product added successfully!")
+    except:
+        print("Please Enter the Required Statement")
 
 # Function to add quantity to an existing product
 def add_quantity():
@@ -135,7 +140,9 @@ def view_inventory():
 
     view_inventory_query = f"SELECT * FROM inventory ORDER BY {sort_column}"
     cursor.execute(view_inventory_query)
+    print("======================================")
     inventory = cursor.fetchall()
+    print("======================================")
 
     if len(inventory) == 0:
         print("Inventory is empty!")
@@ -143,6 +150,7 @@ def view_inventory():
         print("ID\tProduct Name\tQuantity\tPrice")
         for product in inventory:
             print(product[0], "\t", product[1], "\t", product[2], "\t", product[3])
+        
 
 # Function to plot a graph
 def plot_graph():
