@@ -11,6 +11,8 @@ try:
     )
 except:
     print("Please Enter Correct information or Check if a database named Invproj is present or not. Error Code 1" )
+    exit()
+
 # Create a cursor object to execute SQL queries
 cursor = db.cursor()
 
