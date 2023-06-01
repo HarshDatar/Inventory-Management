@@ -1,7 +1,6 @@
 import mysql.connector as mariadbm
 import matplotlib.pyplot as plt
 
-print("hello")
 # Connect to MySQL database
 db = mariadb.connect(
     host="localhost",
