@@ -166,7 +166,7 @@ def plot_graph():
 # Main program loop
 while True:
     display_menu()
-    choice = input("Enter your choice (1-6): ")
+    choice = input("Enter your choice (1-7): ")
 
     if choice == "1":
         add_product()
