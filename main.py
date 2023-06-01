@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 db = mariadb.connect(
     host="localhost",
     user=input("please enter the user name of your account"),
-    password=input("please enter the password"),
-    database="lol"
+     password=input("please enter the password"),
+     database="invproj"
 )
 
 # Create a cursor object to execute SQL queries
@@ -28,11 +28,12 @@ db.commit()
 def display_menu():
     print("===== Inventory Management System =====")
     print("1. Add a product")
-    print("2. Delete a product")
-    print("3. Modify a product")
-    print("4. View inventory")
-    print("5. Plot graph")
-    print("6. Exit")
+    print("2.Add product quantity")
+    print("3. Delete a product")
+    print("4. Modify a product")
+    print("5. View inventory")
+    print("6. Plot graph")
+    print("7. Exit")
 
 # Function to add a product
 def add_product():
@@ -47,6 +48,20 @@ def add_product():
     cursor.execute(add_product_query, (name, quantity, price))
     db.commit()
     print("Product added successfully!")
+
+# Function to add quantity to an existing product
+def add_quantity():
+    product_id = int(input("Enter the product ID: "))
+    quantity = int(input("Enter the quantity to add: "))
+
+    add_quantity_query = """
+    UPDATE inventory
+    SET quantity = quantity + %s
+    WHERE id = %s
+    """
+    cursor.execute(add_quantity_query, (quantity, product_id))
+    db.commit()
+    print("Quantity added to the product!")
 
 # Function to delete a product
 def delete_product():
@@ -95,17 +110,39 @@ def modify_product():
 
 # Function to view inventory
 def view_inventory():
-    view_inventory_query = "SELECT * FROM inventory ORDER BY id"
+    print("===== Inventory =====")
+    print("1. Sort by ID")
+    print("2. Sort by Product Name")
+    print("3. Sort by Quantity")
+    print("4. Sort by Price")
+    print("5. Back to main menu")
+
+    sort_choice = input("Enter your sort choice (1-5): ")
+
+    if sort_choice == "1":
+        sort_column = "id"
+    elif sort_choice == "2":
+        sort_column = "product_name"
+    elif sort_choice == "3":
+        sort_column = "quantity"
+    elif sort_choice == "4":
+        sort_column = "price"
+    elif sort_choice == "5":
+        return
+    else:
+        print("Invalid choice. Returning to main menu.")
+        return
+
+    view_inventory_query = f"SELECT * FROM inventory ORDER BY {sort_column}"
     cursor.execute(view_inventory_query)
     inventory = cursor.fetchall()
 
     if len(inventory) == 0:
         print("Inventory is empty!")
     else:
-        print("===== Inventory =====")
         print("ID\tProduct Name\tQuantity\tPrice")
         for product in inventory:
-            print(product[0], "\t", product[1], "\t\t", product[2], "\t\t", product[3])
+            print(product[0], "\t", product[1], "\t", product[2], "\t", product[3])
 
 # Function to plot a graph
 def plot_graph():
@@ -133,15 +170,17 @@ while True:
 
     if choice == "1":
         add_product()
-    elif choice == "2":
-        delete_product()
+    elif choice=="2":
+        add_quantity()
     elif choice == "3":
-        modify_product()
+        delete_product()
     elif choice == "4":
-        view_inventory()
+        modify_product()
     elif choice == "5":
-        plot_graph()
+        view_inventory()
     elif choice == "6":
+        plot_graph()
+    elif choice == "7":
         print("Exiting...")
         break
     else:
