@@ -6,7 +6,7 @@ db = mariadb.connect(
     host="localhost",
     user=input("please enter the user name of your account"),
      password=input("please enter the password"),
-     database="lol"
+     database="invproj"
 )
 
 # Create a cursor object to execute SQL queries
@@ -28,11 +28,12 @@ db.commit()
 def display_menu():
     print("===== Inventory Management System =====")
     print("1. Add a product")
-    print("2. Delete a product")
-    print("3. Modify a product")
-    print("4. View inventory")
-    print("5. Plot graph")
-    print("6. Exit")
+    print("2.Add product quantity")
+    print("3. Delete a product")
+    print("4. Modify a product")
+    print("5. View inventory")
+    print("6. Plot graph")
+    print("7. Exit")
 
 # Function to add a product
 def add_product():
