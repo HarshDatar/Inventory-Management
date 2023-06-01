@@ -28,7 +28,7 @@ db.commit()
 def display_menu():
     print("===== Inventory Management System =====")
     print("1. Add a product")
-    print("2.Add product quantity")
+    print("2. Add product quantity")
     print("3. Delete a product")
     print("4. Modify a product")
     print("5. View inventory")
