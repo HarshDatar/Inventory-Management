@@ -30,7 +30,7 @@ db.commit()
 def display_menu():
     print("===== Inventory Management System =====")
     print("1. Add a product")
-    print("2.Add product quantity")
+    print("2. Add product quantity")
     print("3. Delete a product")
     print("4. Modify a product")
     print("5. View inventory")
@@ -174,7 +174,7 @@ def plot_graph():
 # Main program loop
 while True:
     display_menu()
-    choice = input("Enter your choice (1-6): ")
+    choice = input("Enter your choice (1-7): ")
 
     if choice == "1":
         add_product()
