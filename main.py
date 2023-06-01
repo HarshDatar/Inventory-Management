@@ -1,4 +1,4 @@
-import mysql.connector as mariadbm
+import mysql.connector as mariadb
 import matplotlib.pyplot as plt
 
 print("Hello")
