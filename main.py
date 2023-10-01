@@ -1,20 +1,20 @@
-import mysql.connector as mariadb
+import mysql.connector as db
 import matplotlib.pyplot as plt
 
 # Connect to MySQL database
-try:
-    db = mariadb.connect(
+
+if db : db.connect(
         host="localhost",
         user=input("please enter the user name of your account: "),
         password=input("please enter the password: "),
         database="invproj"
     )
-except:
+else:
     print("Please Enter Correct information or Check if a database named Invproj is present or not. Error Code 1" )
     exit()
 
 # Create a cursor object to execute SQL queries
-cursor = db.cursor()
+cursor = db.cursor
 
 # Create inventory table if it doesn't exist
 create_table_query = """
