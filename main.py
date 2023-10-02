@@ -41,7 +41,7 @@ def display_menu():
 
 # Function to add a product
 def add_product():
-    try:
+    if:
         name = input("Enter the product name: ")
         quantity = int(input("Enter the quantity: "))
         price = float(input("Enter the price: "))
@@ -53,7 +53,7 @@ def add_product():
         cursor.execute(add_product_query, (name, quantity, price))
         db.commit()
         print("Product added successfully!")
-    except:
+    else:
         print("Please Enter the Required Statement")
 
 # Function to add quantity to an existing product
@@ -106,9 +106,9 @@ def modify_product():
 
     if name == "":
         name = product[1]
-    if quantity == "":
+    elif quantity == "":
         quantity = product[2]
-    if price == "":
+    elif price == "":
         price = product[3]
 
     cursor.execute(update_product_query, (name, quantity, price, product_id))
