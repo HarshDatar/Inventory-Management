@@ -167,7 +167,7 @@ def plot_graph():
         print("To view a bar graph,press 1 ")
         print("To view a line graph,press 2 ")
         print("To view a pie chart,press 3 ")
-        p=int(input("Enter no:"))
+        p=int(input("Enter number:"))
         print("You have selected",p,"option")
 
         if p==1:
