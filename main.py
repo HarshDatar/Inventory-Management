@@ -163,15 +163,38 @@ def plot_graph():
     if len(inventory) == 0:
         print("Inventory is empty!")
     else:
-        products = [product[1] for product in inventory]
-        quantities = [product[2] for product in inventory]
+        print("Select which graph you want to view records")
+        print("To view a bar graph,press 1 ")
+        print("To view a line graph,press 2 ")
+        print("To view a pie chart,press 3 ")
+        p=int(input("Enter number:"))
+        print("You have selected",p,"option")
 
-        plt.bar(products, quantities)
-        plt.xlabel("Product")
-        plt.ylabel("Quantity")
-        plt.title("Inventory")
-        plt.xticks(rotation=45)
-        plt.show()
+        if p==1:
+            products = [product[1] for product in inventory]
+            quantities = [product[2] for product in inventory]
+            plt.bar(products, quantities)
+            plt.xlabel("Product")
+            plt.ylabel("Quantity")
+            plt.title("Inventory")
+            plt.show()
+
+        elif p==2:
+            products = [product[1] for product in inventory]
+            quantities = [product[2] for product in inventory]
+            plt.plot(products, quantities)
+            plt.xlabel("Product")
+            plt.ylabel("Quantity")
+            plt.title("Inventory")
+            plt.show()
+        elif p==3:
+             products = [product[1] for product in inventory]
+             quantities = [product[2] for product in inventory]
+             plt.plot.pie(products, quantities)
+             plt.xlabel("Product")
+             plt.ylabel("Quantity")
+             plt.title("Inventory")
+             plt.show()
 
 # Main program loop
 while True:
